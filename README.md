@@ -10,6 +10,8 @@ The module structure is based on the [Terraform module documentation](https://ww
 ├── .gitignore
 ├── LICENSE
 ├── README.md
+├── docs
+│ └── README.md
 ├── examples
 │ ├── complete
 │ │ ├── main.tf
