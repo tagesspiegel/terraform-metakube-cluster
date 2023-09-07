@@ -29,4 +29,10 @@ The module structure is based on the [Terraform module documentation](https://ww
 
 ## Working with this template
 
-WIP
+In order to use this template, you can use the GitHub template feature. This will create a new repository based on this template. After that, you can clone the repository and start working on it.
+
+### Creating a new repository based on this template
+
+To get started with this template, you have to navigate https://github.com/new and select the Tagesspiegel organization. After that, you can select the `terraform-module-template` repository, enter a name for your new repository and click on `Create repository`.
+
+If everything worked as expected, you should now have a new repository based on this template. You can now clone the repository and start working on it.
