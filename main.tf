@@ -26,7 +26,7 @@ resource "metakube_cluster" "this" {
       realm = var.syseleven_auth_realm
     }
     dynamic "update_window" {
-      iterator = var.cluster_update_window != null ? ["enabled"] : []
+      for_each = var.cluster_update_window != null ? ["enabled"] : []
       content {
         start  = var.cluster_update_window.start
         length = var.cluster_update_window.length
@@ -124,8 +124,7 @@ resource "kubernetes_namespace" "argod" {
   depends_on = [
     metakube_cluster.this,
     metakube_node_deployment.this,
-    metakube_cluster_role_binding.platform_admin,
-    metakube_cluster_role_binding.unitb_platform_engineers,
+    metakube_cluster_role_binding.this,
   ]
   count = var.argocd_daemon_enabled ? 1 : 0
   metadata {
@@ -138,8 +137,7 @@ resource "kubernetes_service_account_v1" "argod" {
   depends_on = [
     metakube_cluster.this,
     metakube_node_deployment.this,
-    metakube_cluster_role_binding.platform_admin,
-    metakube_cluster_role_binding.unitb_platform_engineers,
+    metakube_cluster_role_binding.this,
   ]
   count = var.argocd_daemon_enabled ? 1 : 0
   metadata {
@@ -170,8 +168,7 @@ resource "kubernetes_cluster_role_v1" "argod" {
   depends_on = [
     metakube_cluster.this,
     metakube_node_deployment.this,
-    metakube_cluster_role_binding.platform_admin,
-    metakube_cluster_role_binding.unitb_platform_engineers,
+    metakube_cluster_role_binding.this,
   ]
   count = var.argocd_daemon_enabled ? 1 : 0
   metadata {
@@ -244,7 +241,7 @@ resource "kubernetes_priority_class_v1" "this" {
   depends_on = [
     metakube_cluster.this,
   ]
-  for_each = merge(local.priority_classes, var.additional_priority_classes)
+  for_each = merge(local.default_priority_classes, var.additional_priority_classes)
   metadata {
     name = each.key
   }
