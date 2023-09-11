@@ -35,7 +35,7 @@ In order to use this template, you can use the GitHub template feature. This wil
 
 ### Creating a new repository based on this template
 
-To get started with this template, you have to navigate https://github.com/new and select the Tagesspiegel organization. After that, you can select the `terraform-module-template` repository, enter a name for your new repository and click on `Create repository`. Please note that you have to define a name for your new repository that is not already taken and follows the naming conventions (terraform-<provider>-<name>).
+To get started with this template, you have to navigate https://github.com/new and select the Tagesspiegel organization. After that, you can select the `terraform-module-template` repository, enter a name for your new repository and click on `Create repository`. Please note that you have to define a name for your new repository that is not already taken and follows the naming conventions (`terraform-<provider>-<name>`).
 
 ![Create GitHub repository based on template](docs/github_create_repository.png)
 
