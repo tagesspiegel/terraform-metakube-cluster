@@ -19,6 +19,9 @@ resource "metakube_cluster" "this" {
           id     = var.openstack_application_credential_id
           secret = var.openstack_application_credential_secret
         }
+        network     = var.openstack_network_config.network_id != null && var.openstack_network_config.subnet_id != null ? var.openstack_network_config.network_id : null
+        subnet_id   = var.openstack_network_config.network_id != null && var.openstack_network_config.subnet_id != null ? var.openstack_network_config.subnet_id : null
+        subnet_cidr = (var.openstack_network_config.network_id == null && var.openstack_network_config.subnet_id == null) && var.openstack_network_config.cidr != null ? var.openstack_network_config.cidr : null
       }
     }
     // configure OIDC authentication

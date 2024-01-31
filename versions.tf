@@ -2,11 +2,11 @@ terraform {
   required_providers {
     metakube = {
       source  = "syseleven/metakube"
-      version = "5.0.5"
+      version = "5.2.1"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.24.0"
+      version = "2.25.0"
     }
   }
 }

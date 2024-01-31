@@ -39,6 +39,14 @@ variable "openstack_application_credential_secret" {
   sensitive   = true
 }
 
+variable "openstack_network_config" {
+  type = object({
+    network_id   = optional(string)
+    subnet_id    = optional(string)
+    cidr = optional(string)
+  })
+}
+
 variable "syseleven_auth_realm" {
   type        = string
   description = "The realm to use for the syseleven auth"
