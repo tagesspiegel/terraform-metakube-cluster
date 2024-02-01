@@ -46,10 +46,6 @@ variable "openstack_network_config" {
     subnet_cidr  = optional(string)
   })
   description = "The network configuration for the metakube cluster. Either network_name or subnet_id or subnet_cidr must be set."
-  validation {
-    condition     = (var.openstack_network_config.network_name != null && var.openstack_network_config.subnet_id != null) || (var.openstack_network_config.network_name != null && var.openstack_network_config.subnet_cidr != null) || (var.openstack_network_config.subnet_id != null && var.openstack_network_config.subnet_cidr != null)
-    error_message = "Only one of the fields network_name, subnet_id or subnet_cidr must be set."
-  }
 }
 
 variable "syseleven_auth_realm" {
