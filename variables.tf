@@ -41,9 +41,9 @@ variable "openstack_application_credential_secret" {
 
 variable "openstack_network_config" {
   type = object({
-    network_id = optional(string)
-    subnet_id  = optional(string)
-    cidr       = optional(string)
+    network_id  = optional(string)
+    subnet_id   = optional(string)
+    subnet_cidr = optional(string)
   })
 }
 
