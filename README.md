@@ -7,15 +7,15 @@ This module creates a Kubernetes cluster on [Metakube](https://metakube.syseleve
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.24.0 |
-| <a name="requirement_metakube"></a> [metakube](#requirement\_metakube) | 5.0.5 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.25.0 |
+| <a name="requirement_metakube"></a> [metakube](#requirement\_metakube) | 5.2.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.24.0 |
-| <a name="provider_metakube"></a> [metakube](#provider\_metakube) | 5.0.5 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.25.0 |
+| <a name="provider_metakube"></a> [metakube](#provider\_metakube) | 5.2.1 |
 
 ## Modules
 
@@ -25,17 +25,17 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [kubernetes_cluster_role_binding_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/cluster_role_binding_v1) | resource |
-| [kubernetes_cluster_role_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/cluster_role_v1) | resource |
-| [kubernetes_namespace.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/namespace) | resource |
-| [kubernetes_priority_class_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/priority_class_v1) | resource |
-| [kubernetes_secret_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/secret_v1) | resource |
-| [kubernetes_service_account_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/service_account_v1) | resource |
-| [metakube_cluster.this](https://registry.terraform.io/providers/syseleven/metakube/5.0.5/docs/resources/cluster) | resource |
-| [metakube_cluster_role_binding.this](https://registry.terraform.io/providers/syseleven/metakube/5.0.5/docs/resources/cluster_role_binding) | resource |
-| [metakube_node_deployment.this](https://registry.terraform.io/providers/syseleven/metakube/5.0.5/docs/resources/node_deployment) | resource |
-| [kubernetes_secret_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/data-sources/secret_v1) | data source |
-| [metakube_k8s_version.cluster](https://registry.terraform.io/providers/syseleven/metakube/5.0.5/docs/data-sources/k8s_version) | data source |
+| [kubernetes_cluster_role_binding_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.25.0/docs/resources/cluster_role_binding_v1) | resource |
+| [kubernetes_cluster_role_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.25.0/docs/resources/cluster_role_v1) | resource |
+| [kubernetes_namespace.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.25.0/docs/resources/namespace) | resource |
+| [kubernetes_priority_class_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/2.25.0/docs/resources/priority_class_v1) | resource |
+| [kubernetes_secret_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.25.0/docs/resources/secret_v1) | resource |
+| [kubernetes_service_account_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.25.0/docs/resources/service_account_v1) | resource |
+| [metakube_cluster.this](https://registry.terraform.io/providers/syseleven/metakube/5.2.1/docs/resources/cluster) | resource |
+| [metakube_cluster_role_binding.this](https://registry.terraform.io/providers/syseleven/metakube/5.2.1/docs/resources/cluster_role_binding) | resource |
+| [metakube_node_deployment.this](https://registry.terraform.io/providers/syseleven/metakube/5.2.1/docs/resources/node_deployment) | resource |
+| [kubernetes_secret_v1.argod](https://registry.terraform.io/providers/hashicorp/kubernetes/2.25.0/docs/data-sources/secret_v1) | data source |
+| [metakube_k8s_version.cluster](https://registry.terraform.io/providers/syseleven/metakube/5.2.1/docs/data-sources/k8s_version) | data source |
 
 ## Inputs
 
@@ -55,6 +55,7 @@ No modules.
 | <a name="input_node_pools"></a> [node\_pools](#input\_node\_pools) | List all node pools that should be created in the cluster | <pre>map(object({<br>    replicas = object({<br>      min = number<br>      max = number<br>    })<br>    labels = optional(map(string))<br>    os_config = object({<br>      image       = string<br>      auto_update = bool<br>    })<br>    node_config = object({<br>      flavor          = string<br>      use_floating_ip = bool<br>    })<br>    taints = optional(list(object({<br>      key    = string<br>      value  = string<br>      effect = string<br>    })))<br>  }))</pre> | n/a | yes |
 | <a name="input_openstack_application_credential_id"></a> [openstack\_application\_credential\_id](#input\_openstack\_application\_credential\_id) | The OpenStack application credential ID to use for the metakube cluster | `string` | n/a | yes |
 | <a name="input_openstack_application_credential_secret"></a> [openstack\_application\_credential\_secret](#input\_openstack\_application\_credential\_secret) | The OpenStack application credential to use for the metakube cluster | `string` | n/a | yes |
+| <a name="input_openstack_network_config"></a> [openstack\_network\_config](#input\_openstack\_network\_config) | n/a | <pre>object({<br>    network_id  = optional(string)<br>    subnet_id   = optional(string)<br>    subnet_cidr = optional(string)<br>  })</pre> | n/a | yes |
 | <a name="input_syseleven_auth_realm"></a> [syseleven\_auth\_realm](#input\_syseleven\_auth\_realm) | The realm to use for the syseleven auth | `string` | n/a | yes |
 
 ## Outputs
