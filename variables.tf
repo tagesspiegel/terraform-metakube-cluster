@@ -52,7 +52,7 @@ variable "openstack_network_config" {
     error_message = "Either network_name and subnet_id or subnet_cidr must be set."
   }
   validation {
-    condition = var.openstack_network_config.subnet_cidr != null ? can(regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}/([1|2]+\\d|8|9)$", var.openstack_network_config.subnet_cidr)) : true
+    condition     = var.openstack_network_config.subnet_cidr != null ? can(regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}/([1|2]+\\d|8|9)$", var.openstack_network_config.subnet_cidr)) : true
     error_message = "No valid IP range in CIDR given in field openstack_network_config.subnet_cidr"
   }
 }
@@ -120,6 +120,7 @@ variable "cluster_rbac" {
     kind = string
     name = string
   })))
+  description = "The RBAC configuration for the cluster. The key is the name of the cluster role and the value is a list of subjects."
 }
 
 variable "argocd_daemon_enabled" {
