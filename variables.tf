@@ -45,7 +45,16 @@ variable "openstack_network_config" {
     subnet_id    = optional(string)
     subnet_cidr  = optional(string)
   })
+  nullable    = true
   description = "The network configuration for the metakube cluster. Either network_name or subnet_id or subnet_cidr must be set."
+  validation {
+    condition     = ((var.openstack_network_config.network_name == null && var.openstack_network_config.subnet_id == null) && var.openstack_network_config.subnet_cidr != null) || ((var.openstack_network_config.network_name != null && var.openstack_network_config.subnet_id != null) && var.openstack_network_config.subnet_cidr == null)
+    error_message = "Either network_name and subnet_id or subnet_cidr must be set."
+  }
+  validation {
+    condition = var.openstack_network_config.subnet_cidr != null ? can(regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}/([1|2]+\\d|8|9)$", var.openstack_network_config.subnet_cidr)) : true
+    error_message = "No valid IP range in CIDR given in field openstack_network_config.subnet_cidr"
+  }
 }
 
 variable "syseleven_auth_realm" {
