@@ -4,6 +4,11 @@ data "metakube_k8s_version" "cluster" {
   minor = var.k8s_version.minor
 }
 
+locals {
+  k8s_api_version = var.k8s_version.patch != null ? "${var.k8s_version.major}.${var.k8s_version.minor}.${var.k8s_version.patch}" : data.metakube_k8s_version.cluster.version
+}
+
+
 // define and create the cluster
 resource "metakube_cluster" "this" {
   name       = var.cluster_name
@@ -12,7 +17,7 @@ resource "metakube_cluster" "this" {
 
   spec {
     enable_ssh_agent = false
-    version          = data.metakube_k8s_version.cluster.version
+    version          = local.k8s_api_version
     cloud {
       openstack {
         application_credentials {
@@ -54,7 +59,7 @@ resource "metakube_node_deployment" "this" {
     max_replicas = each.value.replicas.max
     template {
       versions {
-        kubelet = data.metakube_k8s_version.cluster.version
+        kubelet = local.k8s_api_version
       }
       labels = each.value.labels == null ? {} : each.value.labels
       operating_system {

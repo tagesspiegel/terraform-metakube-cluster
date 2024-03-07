@@ -3,10 +3,11 @@ variable "k8s_version" {
   type = object({
     major = number
     minor = number
+    patch = optional(number)
   })
   default = {
     major = 1
-    minor = 26
+    minor = 28
   }
 }
 
